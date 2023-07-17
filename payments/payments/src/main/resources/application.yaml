@@ -1,0 +1,36 @@
+server:
+  port: 10009
+
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/paymentsdb
+    username: postgres
+    password: mysecretpassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  application:
+    name: PAYMENT-SERVICE
+#  config:
+#    import: configserver:${CONFIG_SERVER_URL:http://localhost:9296}
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      #value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema.registry.url: http://localhost:8079
+
+
+# Logging configuration
+logging:
+  level:
+    root: DEBUG
+    com.tudux.kafkamicros: DEBUG
+
+topics:
+  producer-topic: "audit-data-topic2"

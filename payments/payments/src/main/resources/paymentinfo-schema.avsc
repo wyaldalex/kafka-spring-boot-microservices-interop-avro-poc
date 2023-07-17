@@ -1,0 +1,34 @@
+{
+    "type": "record",
+    "name": "PaymentInfoSchema",
+    "namespace": "com.tudux.kafkamicros.schema",
+    "fields": [
+    {
+        "name": "id",
+        "type": "long"
+    },
+    {
+        "name": "bankId",
+        "type": "string"
+    },
+    {
+        "name": "accountOriginNumber",
+        "type": "string"
+    },
+    {
+        "name": "accountTargetNumber",
+        "type": "string"
+    },
+    {
+        "name": "senderId",
+        "type": "string"
+    },
+    {
+        "name": "receiverId",
+        "type": "string"
+    },
+    {
+        "name": "amount",
+        "type": "string"
+    }]
+}
