@@ -1,9 +1,9 @@
 CREATE DATABASE paymentsdb;
 
-\c tradesdb;
+\c paymentsdb;
 
 CREATE DATABASE auditingdb;
 
-\c usersdb;
+\c auditingdb;
 
 

@@ -1,9 +1,9 @@
 server:
-  port: 10009
+  port: 10011
 
 spring:
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/paymentsdb
+    url: jdbc:postgresql://127.0.0.1:5432/auditingdb
     username: postgres
     password: mysecretpassword
     driver-class-name: org.postgresql.Driver
@@ -13,21 +13,22 @@ spring:
       ddl-auto: update
     show-sql: true
   application:
-    name: PAYMENT-SERVICE
+    name: AUDITING-SERVICE
 #  config:
 #    import: configserver:${CONFIG_SERVER_URL:http://localhost:9296}
-
-
 kafka:
   bootstrap-servers: localhost:29092
-  producer:
+  consumer:
+    group-id: auditing-poc-consumer
     key-serializer: org.apache.kafka.common.serialization.StringSerializer
     value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
     properties:
+      specific.avro.reader: true
+      auto.offset.reset: earliest # used in this case for testing in this poc
       #schema.registry.url: http://localhost:8079
+      value.subject.name.strategy: io.confluent.kafka.serializers.subject.TopicNameStrategy
+      value.subject.topic.name.format: "audit-data-topic2-value"
   schema.registry.url: http://localhost:8079
-
-
 
 
 # Logging configuration
@@ -37,4 +38,4 @@ logging:
     com.tudux.kafkamicros: INFO
 
 topics:
-  producer-topic: "audit-data-topic2"
+  consumer-topic: "audit-data-topic2"
