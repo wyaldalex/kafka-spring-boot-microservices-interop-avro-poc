@@ -53,7 +53,6 @@ public class PaymentProducer {
             log.error(message);
             throw new RuntimeException(message, e);
         }
-
         //kafkaTemplate.send(topic, payload);
     }
 }
