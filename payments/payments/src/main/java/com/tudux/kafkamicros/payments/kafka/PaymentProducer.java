@@ -32,13 +32,13 @@ public class PaymentProducer {
 
         //Avro serialization for BigDecimal not out of the box, may require changes
         PaymentInfoSchema payload =  new PaymentInfoSchema();
-        payload.setAmount(payment.toString());
+        payload.setAmount(payment.getAmount().toString());
         payload.setAccountOriginNumber(payment.getAccountOriginNumber());
         payload.setAccountTargetNumber(payment.getAccountTargetNumber());
         payload.setBankId(payment.getBankId());
-        payload.setSenderId(payment.toString());
-        payload.setReceiverId(payment.toString());
-        payload.setAmount(payment.toString());
+        payload.setSenderId(payment.getSenderId());
+        payload.setReceiverId(payment.getReceiverId());
+        payload.setId(payment.getId());
 
         try {
             String messageId = UUID.randomUUID().toString();
