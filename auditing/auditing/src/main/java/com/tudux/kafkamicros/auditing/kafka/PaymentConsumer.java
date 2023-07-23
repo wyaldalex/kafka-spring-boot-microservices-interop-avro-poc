@@ -1,13 +1,9 @@
 package com.tudux.kafkamicros.auditing.kafka;
 
-import com.tudux.kafkamicros.auditing.service.AbnormalTransactionService;
 import com.tudux.kafkamicros.auditing.service.IAbnormalTransactionService;
 import com.tudux.kafkamicros.schema.PaymentInfoSchema;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -24,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PaymentConsumer {
 
 
-    final AtomicInteger counter = new AtomicInteger();
+    public final AtomicInteger counter = new AtomicInteger();
     private String topic;
 
     @Autowired
